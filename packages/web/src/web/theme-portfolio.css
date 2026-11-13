@@ -1,0 +1,74 @@
+/* ---- Portfolio theme (see design.md) ---- */
+:root {
+  --bg: #0b0f14;
+  --bg-elev: #111821;
+  --border: #1f2a37;
+  --fg: #e6edf3;
+  --fg-muted: #8b98a5;
+  --accent: #3ddc97;
+  --accent-2: #58a6ff;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Poppins", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+}
+.mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(230, 237, 243, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(230, 237, 243, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse at 30% 20%, black 0%, transparent 65%);
+  mask-image: radial-gradient(ellipse at 30% 20%, black 0%, transparent 65%);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+.card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 200ms ease;
+}
+.card:hover { border-color: color-mix(in oklab, var(--accent) 50%, transparent); }
+
+.btn-primary, .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.btn-primary { background: var(--accent); color: #06120c; }
+.btn-primary:hover { background: color-mix(in oklab, var(--accent) 85%, white); }
+.btn-ghost { border: 1px solid var(--border); color: var(--fg); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.link { color: var(--accent); text-decoration: none; }
+.link:hover { text-decoration: underline; }
+
+.pulse { animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .pulse { animation: none; }
+  html { scroll-behavior: auto; }
+}
